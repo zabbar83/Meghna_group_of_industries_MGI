@@ -1,0 +1,58 @@
+select  
+        vta.national_ID nationalId,
+        vta.division_id divisionId,
+        vta.area_id areaId,
+        vta.teritory_id teritoryId,
+        vta.national_name nationalName,
+        vta.division_name divisionName,
+        vta.area_name areaName,
+        vta.teritory_name teritoryName,
+        sum(case when p.product_id =1 then ii.quantity else 0 END) pro1,
+        sum(case when p.product_id =2 then ii.quantity else 0 end) pro2,
+        sum(case when p.product_id =3 then ii.quantity else 0 end) pro3,
+        sum(case when p.product_id =4 then ii.quantity else 0 end) pro4,
+        sum(case when p.product_id =5 then ii.quantity else 0 end) pro5,
+        sum(case when p.product_id =6 then ii.quantity else 0 end) pro6,
+        sum(case when p.product_id =7 then ii.quantity else 0 end) pro7,
+        sum(case when p.product_id =8 then ii.quantity else 0 end) pro8,
+        sum(case when p.product_id =9 then ii.quantity else 0 end) pro9,
+        sum(case when p.product_id =10 then ii.quantity else 0 end) pro10,
+        sum(case when p.product_id =11 then ii.quantity else 0 end) pro11,
+        sum(case when p.product_id =12 then ii.quantity else 0 end) pro12,
+        sum(case when p.product_id =13 then ii.quantity else 0 end) pro13,
+        sum(case when p.product_id =14 then ii.quantity else 0 end) pro14,
+        sum(case when p.product_id =15 then ii.quantity else 0 end) pro15,
+        sum(case when p.product_id =16 then ii.quantity else 0 end) pro16,
+        sum(case when p.product_id =17 then ii.quantity else 0 end) pro17,
+        sum(case when p.product_id =18 then ii.quantity else 0 end) pro18,
+        sum(case when p.product_id =19 then ii.quantity else 0 end) pro19,
+        sum(case when p.product_id =20 then ii.quantity else 0 end) pro20,
+        sum(case when p.product_id =21 then ii.quantity else 0 end) pro21,
+        sum(case when p.product_id =22 then ii.quantity else 0 end) pro22,
+        sum(case when p.product_id =23 then ii.quantity else 0 end) pro23,
+        sum(case when p.product_id =24 then ii.quantity else 0 end) pro24,
+        sum(case when p.product_id =25 then ii.quantity else 0 end) pro25,
+        sum(case when p.product_id =26 then ii.quantity else 0 end) pro26,
+        sum(case when p.product_id =27 then ii.quantity else 0 end) pro27,
+        sum(case when p.product_id =28 then ii.quantity else 0 end) pro28,
+        sum(case when p.product_id =29 then ii.quantity else 0 end) pro29,
+        sum(case when p.product_id =30 then ii.quantity else 0 end) pro30,
+        sum(case when p.product_id =31 then ii.quantity else 0 end) pro31,
+        sum(case when p.product_id =32 then ii.quantity else 0 end) pro32,
+        sum(case when p.product_id =33 then ii.quantity else 0 end) pro33
+from    appmgi.consumer c 
+JOIN    appmgi.consumer_teritory ct on ct.consumer_id=c.id
+JOIN    appmgi.V_TERITORY_ALL vta ON vta.ROUTE_ID = ct.teritory_id
+and     (:nationalId is null or vta.NATIONAL_ID = :nationalId)
+and     (:divisionId is null or vta.DIVISION_ID = :divisionId)
+and     (:areaId is null or vta.AREA_ID = :areaId)
+and     (:territoryId is null or vta.TERITORY_ID = :territoryId)
+JOIN    appmgi.invoice_main im on ct.consumer_id=im.consumer_id
+JOIN    appmgi.invoice_items ii on im.inv_no=ii.inv_no
+JOIN    appmgi.product p on ii.product_id=p.product_id
+where   im.INV_TYPE = 'I'
+AND     im.txn_dt BETWEEN :orderDate || ' 12.00.00.000000000 AM' and :orderDate || ' 11.59.59.999999999 PM'
+and     ii.quantity > 0
+GROUP   By vta.national_ID,vta.division_id,vta.area_id,vta.teritory_id,
+        vta.national_name, vta.division_name, vta.area_name,vta.teritory_name
+ORDER   By vta.national_ID,vta.division_id,vta.area_id,vta.teritory_id

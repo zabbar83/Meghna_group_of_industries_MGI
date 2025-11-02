@@ -1,0 +1,33 @@
+select  
+        
+        vta.route_id routeId,
+        vta.route_name routeName,
+        c.id consumerId,
+        c.CUSTOMER_NAME retailerName,
+        c.TRADE_LICENSE_Name outletName,
+        im.order_no orderNo,
+        coalesce(p.product_name,pd.product_name) productName,
+        NVL(sum(ii.quantity),0) orderQty,
+        NVL(sum(ii.total_amount),0) orderAmo,
+        NVL(sum(ii.DISCOUNT_AMOUNT),0) orderDisAmo,
+        NVL(sum(iid.quantity),0) delQty,
+        NVL(sum(iid.total_amount),0) delAmo,
+        NVL(sum(iid.DISCOUNT_AMOUNT),0) delDisAmo
+from    appmgi.consumer c 
+JOIN    appmgi.consumer_teritory ct on ct.consumer_id=c.id
+JOIN    appmgi.V_TERITORY_ALL vta ON vta.ROUTE_ID = ct.teritory_id
+and     vta.TERITORY_ID = :territoryId
+and     (vta.ROUTE_ID = :routeId or :routeId is null)
+JOIN    appmgi.order_main im on ct.consumer_id=im.consumer_id
+AND     im.INV_TYPE = 'I'
+AND     im.txn_dt BETWEEN :orderDate || ' 12.00.00.000000000 AM' and :orderDate || ' 11.59.59.999999999 PM'
+JOIN    appmgi.order_items ii on im.order_no=ii.order_no
+JOIN    appmgi.product p on ii.product_id=p.product_id
+and     ii.quantity > 0
+LEFT    JOIN invoice_main imd on im.order_no=imd.order_no
+AND     imd.INV_TYPE = 'I'
+LEFT    JOIN invoice_items iid on imd.inv_no=iid.inv_no
+and     iid.quantity > 0
+JOIN    appmgi.product pd on iid.product_id=pd.product_id
+GROUP   By vta.route_id, vta.route_name,c.id,c.CUSTOMER_NAME,c.TRADE_LICENSE_Name,im.order_no,p.product_name,pd.product_name
+ORDER   By vta.route_id,c.id,im.order_no

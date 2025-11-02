@@ -1,0 +1,82 @@
+WITH visit_data AS (
+    SELECT 
+        vta.NATIONAL_ID,
+        vta.NATIONAL_NAME,
+        vta.division_id, 
+        vta.division_name,
+        vta.teritory_id,
+        vta.teritory_name,
+        vta.AREA_ID,
+        vta.AREA_NAME,
+        vta.route_id, 
+        vta.route_name,
+        sr.sales_rep_name,
+        c.id AS consumer_id,
+        c.customer_name,
+        c.mobile_no,
+        c.trade_license_name,
+        MIN(CASE WHEN SV.status = 5 THEN SV.entry_time END)  entryTime,
+        MIN(CASE WHEN SV.status <> 5 THEN SV.entry_time END) AS exitTime,
+        MIN(CASE 
+                WHEN SV.status = 0 OR SV.status IS NULL THEN 'Not Visited'
+                WHEN SV.status = 1 THEN 'Sales'
+                WHEN SV.status = 2 THEN 'Stock Available'
+                WHEN SV.status = 3 THEN 'Closed'
+                WHEN SV.status = 4 THEN 'Other'
+            END) AS visitStatus
+    FROM 
+        appmgi.v_teritory_all vta
+      JOIN appmgi.consumer_teritory ct ON ct.teritory_id = vta.route_id
+        AND vta.route_id = ANY(:routeId)
+       JOIN appmgi.consumer c ON c.id = ct.consumer_id
+        AND c.status = 1
+        LEFT JOIN appmgi.v_store_visit_and_buffer_sts sv ON SV.consumer_id = ct.consumer_id 
+             AND TO_CHAR(SV.entry_time, 'dd-mm-yyyy') = :visitDay
+        JOIN appmgi.sales_rep_teritory srt ON srt.teritory_id = vta.route_id
+        JOIN appmgi.sales_rep sr ON sr.id = srt.sales_rep_id 
+    GROUP BY 
+        vta.NATIONAL_ID,
+        vta.NATIONAL_NAME,
+        vta.division_id, 
+        vta.division_name, 
+        vta.teritory_id, 
+        vta.teritory_name, 
+        vta.AREA_ID,
+        vta.AREA_NAME,
+        vta.route_id, 
+        vta.route_name, 
+        c.id, 
+        c.customer_name, 
+        c.mobile_no, 
+        c.trade_license_name,
+        sr.sales_rep_name
+),
+invoice_data AS (  
+    SELECT 
+        consumer_id, 
+        MIN(CASE 
+                WHEN account_head = 'Manual' THEN 'manualSales'
+            END) AS manualSales
+    FROM 
+        appmgi.invoice_main im
+    WHERE 
+        account_head = 'Manual' 
+        AND TO_CHAR(im.txn_dt, 'dd-mm-yyyy') = :visitDay
+    GROUP BY 
+        im.consumer_id
+)
+SELECT  
+    vd.route_id routeId,
+    vd.route_name routeName,
+    vd.sales_rep_name srName,
+    vd.consumer_id consumerId,
+    vd.customer_name customerName,
+    vd.mobile_no  mobileNo,
+    vd.trade_license_name storeName,
+    NVL(to_char(vd.entryTime),' ') entryTime,
+    NVL(to_char(vd.exitTime),' ') exitTime,
+    COALESCE(inv.manualSales, vd.visitStatus) AS visitStatus 
+FROM 
+    visit_data vd
+    LEFT JOIN invoice_data inv ON vd.consumer_id = inv.consumer_id
+order by vd.route_id,vd.consumer_id

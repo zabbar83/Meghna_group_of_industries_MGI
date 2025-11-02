@@ -1,0 +1,160 @@
+WITH route_wise_target AS (
+SELECT vta.ROUTE_ID, sum(srmt.QUANTITY) target
+FROM appmgi.V_TERITORY_ALL vta
+JOIN appmgi.SALES_REP_MONTHLY_TARGET srmt ON srmt.teritory_id = vta.ROUTE_ID
+JOIN appmgi.PRODUCT p ON srmt.PRODUCT_ID = p.PRODUCT_ID
+WHERE TO_CHAR(srmt.MONTH_NAME,'mm-yyyy') = :targetMonth
+and p.product_cat_id=:productCategoryId
+AND p.PRODUCT_NAME like :productName || '%'
+and p.product_short_name like :brandName || '%'
+GROUP BY vta.ROUTE_ID)
+SELECT national_ID nationalId, national_name nationalName, division_id divisionId, division_name divisionName, area_id areaId,area_name areaName,teritory_id territoryId, teritory_name territoryName, route_id routeId, route_name routeName,
+to_char(to_date(:targetMonth,'mm-yyyy')+0,'Day')DD1,
+to_char(to_date(:targetMonth,'mm-yyyy')+1,'Day')DD2,
+to_char(to_date(:targetMonth,'mm-yyyy')+2,'Day')DD3,
+to_char(to_date(:targetMonth,'mm-yyyy')+3,'Day')DD4,
+to_char(to_date(:targetMonth,'mm-yyyy')+4,'Day')DD5,
+to_char(to_date(:targetMonth,'mm-yyyy')+5,'Day')DD6,
+to_char(to_date(:targetMonth,'mm-yyyy')+6,'Day')DD7,
+to_char(to_date(:targetMonth,'mm-yyyy')+7,'Day')DD8,
+to_char(to_date(:targetMonth,'mm-yyyy')+8,'Day')DD9,
+to_char(to_date(:targetMonth,'mm-yyyy')+9,'Day')DD10,
+to_char(to_date(:targetMonth,'mm-yyyy')+10,'Day')DD11,
+to_char(to_date(:targetMonth,'mm-yyyy')+11,'Day')DD12,
+to_char(to_date(:targetMonth,'mm-yyyy')+12,'Day')DD13,
+to_char(to_date(:targetMonth,'mm-yyyy')+13,'Day')DD14,
+to_char(to_date(:targetMonth,'mm-yyyy')+14,'Day')DD15,
+to_char(to_date(:targetMonth,'mm-yyyy')+15,'Day')DD16,
+to_char(to_date(:targetMonth,'mm-yyyy')+16,'Day')DD17,
+to_char(to_date(:targetMonth,'mm-yyyy')+17,'Day')DD18,
+to_char(to_date(:targetMonth,'mm-yyyy')+18,'Day')DD19,
+to_char(to_date(:targetMonth,'mm-yyyy')+19,'Day')DD20,
+to_char(to_date(:targetMonth,'mm-yyyy')+20,'Day')DD21,
+to_char(to_date(:targetMonth,'mm-yyyy')+21,'Day')DD22,
+to_char(to_date(:targetMonth,'mm-yyyy')+22,'Day')DD23,
+to_char(to_date(:targetMonth,'mm-yyyy')+23,'Day')DD24,
+to_char(to_date(:targetMonth,'mm-yyyy')+24,'Day')DD25,
+to_char(to_date(:targetMonth,'mm-yyyy')+25,'Day')DD26,
+to_char(to_date(:targetMonth,'mm-yyyy')+26,'Day')DD27,
+to_char(to_date(:targetMonth,'mm-yyyy')+27,'Day')DD28,
+to_char(to_date(:targetMonth,'mm-yyyy')+28,'Day')DD29,
+to_char(to_date(:targetMonth,'mm-yyyy')+29,'Day')DD30,
+to_char(to_date(:targetMonth,'mm-yyyy')+30,'Day')DD31,
+sum(d_01) D1, sum(m_01) M1, sum(d_02) D2, sum(m_02) M2,
+sum(d_03) D3,sum(m_03) M3,
+sum(d_04) D4, sum(m_04) M4, sum(d_05) D5,sum(m_05) M5,
+sum(d_06) D6, sum(m_06) M6, sum(d_07) D7,sum(m_07) M7,
+sum(d_08) D8,sum(m_08) M8, sum(d_09) D9, sum(m_09) M9,
+sum(d_10) D10,sum(m_10) M10, sum(d_11) D11,sum(m_11) M11,
+sum(d_12) D12,sum(m_12) M12, sum(d_13) D13,sum(m_13) M13,
+sum(d_14) D14,sum(m_14) M14, sum(d_15) D15,sum(m_15) M15,
+sum(d_16) D16,sum(m_16) M16, sum(d_17) D17,sum(m_17) M17,
+sum(d_18) D18, sum(m_18) M18,sum(d_19) D19, sum(m_19) M19,
+sum(d_20) D20, sum(m_20) M20, sum(d_21) D21, sum(m_21) M21,
+sum(d_22) D22,sum(m_22) M22,sum(d_23) D23,sum(m_23) M23,
+sum(d_24) D24,sum(m_24) M24, sum(d_25) D25, sum(m_25) M25,
+sum(d_26) D26,sum(m_26) M26,sum(d_27) D27,sum(m_27) M27,
+sum(d_28) D28,sum(m_28) M28, sum(d_29) D29,sum(m_29) M29,
+sum(d_30) D30,sum(m_30) M30, sum(d_31) D31,sum(m_31) M31,
+NVL(count(distinct consumer_id),0) totalOutlet,
+nvl(max(target),0) monthlyTarget, sum(mon_total) mtotal,sum(memo_total) memoMtotal, round(sum(m_projection),2) mprojection, round(sum(projection),2) projection
+FROM (select vta.national_ID,vta.division_id,vta.area_id,vta.teritory_id,vta.route_id, vta.national_name, vta.division_name, vta.area_name,vta.teritory_name, vta.route_name,
+case when to_char(t2.txn_dt,'dd') ='01' then count(DISTINCT t2.order_no) else 0 end m_01,
+case when to_char(t2.txn_dt,'dd') ='02' then count(DISTINCT t2.order_no) else 0 end m_02,
+case when to_char(t2.txn_dt,'dd') ='03' then count(DISTINCT t2.order_no) else 0 end m_03,
+case when to_char(t2.txn_dt,'dd') ='04' then count(DISTINCT t2.order_no) else 0 end m_04,
+case when to_char(t2.txn_dt,'dd') ='05' then count(DISTINCT t2.order_no) else 0 end m_05,
+case when to_char(t2.txn_dt,'dd') ='06' then count(DISTINCT t2.order_no) else 0 end m_06,
+case when to_char(t2.txn_dt,'dd') ='07' then count(DISTINCT t2.order_no) else 0 end m_07,
+case when to_char(t2.txn_dt,'dd') ='08' then count(DISTINCT t2.order_no) else 0 end m_08,
+case when to_char(t2.txn_dt,'dd') ='09' then count(DISTINCT t2.order_no) else 0 end m_09,
+case when to_char(t2.txn_dt,'dd') ='10' then count(DISTINCT t2.order_no) else 0 end m_10,
+case when to_char(t2.txn_dt,'dd') ='11' then count(DISTINCT t2.order_no) else 0 end m_11,
+case when to_char(t2.txn_dt,'dd') ='12' then count(DISTINCT t2.order_no) else 0 end m_12,
+case when to_char(t2.txn_dt,'dd') ='13' then count(DISTINCT t2.order_no) else 0 end m_13,
+case when to_char(t2.txn_dt,'dd') ='14' then count(DISTINCT t2.order_no) else 0 end m_14,
+case when to_char(t2.txn_dt,'dd') ='15' then count(DISTINCT t2.order_no) else 0 end m_15,
+case when to_char(t2.txn_dt,'dd') ='16' then count(DISTINCT t2.order_no) else 0 end m_16,
+case when to_char(t2.txn_dt,'dd') ='17' then count(DISTINCT t2.order_no) else 0 end m_17,
+case when to_char(t2.txn_dt,'dd') ='18' then count(DISTINCT t2.order_no) else 0 end m_18,
+case when to_char(t2.txn_dt,'dd') ='19' then count(DISTINCT t2.order_no) else 0 end m_19,
+case when to_char(t2.txn_dt,'dd') ='20' then count(DISTINCT t2.order_no) else 0 end m_20,
+case when to_char(t2.txn_dt,'dd') ='21' then count(DISTINCT t2.order_no) else 0 end m_21,
+case when to_char(t2.txn_dt,'dd') ='22' then count(DISTINCT t2.order_no) else 0 end m_22,
+case when to_char(t2.txn_dt,'dd') ='23' then count(DISTINCT t2.order_no) else 0 end m_23,
+case when to_char(t2.txn_dt,'dd') ='24' then count(DISTINCT t2.order_no) else 0 end m_24,
+case when to_char(t2.txn_dt,'dd') ='25' then count(DISTINCT t2.order_no) else 0 end m_25,
+case when to_char(t2.txn_dt,'dd') ='26' then count(DISTINCT t2.order_no) else 0 end m_26,
+case when to_char(t2.txn_dt,'dd') ='27' then count(DISTINCT t2.order_no) else 0 end m_27,
+case when to_char(t2.txn_dt,'dd') ='28' then count(DISTINCT t2.order_no) else 0 end m_28,
+case when to_char(t2.txn_dt,'dd') ='29' then count(DISTINCT t2.order_no) else 0 end m_29,
+case when to_char(t2.txn_dt,'dd') ='30' then count(DISTINCT t2.order_no) else 0 end m_30,
+case when to_char(t2.txn_dt,'dd') ='31' then count(DISTINCT t2.order_no) else 0 end m_31,
+case when to_char(t2.txn_dt,'mm-yyyy') =:targetMonth then t2.consumer_id else NULL end consumer_id,
+sum(case when to_char(t2.txn_dt,'dd') ='01' then t2.quantity else 0 END) d_01,
+sum(case when to_char(t2.txn_dt,'dd') ='02' then t2.quantity else 0 end) d_02,
+sum(case when to_char(t2.txn_dt,'dd') ='03' then t2.quantity else 0 end) d_03,
+sum(case when to_char(t2.txn_dt,'dd') ='04' then t2.quantity else 0 end) d_04,
+sum(case when to_char(t2.txn_dt,'dd') ='05' then t2.quantity else 0 end) d_05,
+sum(case when to_char(t2.txn_dt,'dd') ='06' then t2.quantity else 0 end) d_06,
+sum(case when to_char(t2.txn_dt,'dd') ='07' then t2.quantity else 0 end) d_07,
+sum(case when to_char(t2.txn_dt,'dd') ='08' then t2.quantity else 0 end) d_08,
+sum(case when to_char(t2.txn_dt,'dd') ='09' then t2.quantity else 0 end) d_09,
+sum(case when to_char(t2.txn_dt,'dd') ='10' then t2.quantity else 0 end) d_10,
+sum(case when to_char(t2.txn_dt,'dd') ='11' then t2.quantity else 0 end) d_11,
+sum(case when to_char(t2.txn_dt,'dd') ='12' then t2.quantity else 0 end) d_12,
+sum(case when to_char(t2.txn_dt,'dd') ='13' then t2.quantity else 0 end) d_13,
+sum(case when to_char(t2.txn_dt,'dd') ='14' then t2.quantity else 0 end) d_14,
+sum(case when to_char(t2.txn_dt,'dd') ='15' then t2.quantity else 0 end) d_15,
+sum(case when to_char(t2.txn_dt,'dd') ='16' then t2.quantity else 0 end) d_16,
+sum(case when to_char(t2.txn_dt,'dd') ='17' then t2.quantity else 0 end) d_17,
+sum(case when to_char(t2.txn_dt,'dd') ='18' then t2.quantity else 0 end) d_18,
+sum(case when to_char(t2.txn_dt,'dd') ='19' then t2.quantity else 0 end) d_19,
+sum(case when to_char(t2.txn_dt,'dd') ='20' then t2.quantity else 0 end) d_20,
+sum(case when to_char(t2.txn_dt,'dd') ='21' then t2.quantity else 0 end) d_21,
+sum(case when to_char(t2.txn_dt,'dd') ='22' then t2.quantity else 0 end) d_22,
+sum(case when to_char(t2.txn_dt,'dd') ='23' then t2.quantity else 0 end) d_23,
+sum(case when to_char(t2.txn_dt,'dd') ='24' then t2.quantity else 0 end) d_24,
+sum(case when to_char(t2.txn_dt,'dd') ='25' then t2.quantity else 0 end) d_25,
+sum(case when to_char(t2.txn_dt,'dd') ='26' then t2.quantity else 0 end) d_26,
+sum(case when to_char(t2.txn_dt,'dd') ='27' then t2.quantity else 0 end) d_27,
+sum(case when to_char(t2.txn_dt,'dd') ='28' then t2.quantity else 0 end) d_28,
+sum(case when to_char(t2.txn_dt,'dd') ='29' then t2.quantity else 0 end) d_29,
+sum(case when to_char(t2.txn_dt,'dd') ='30' then t2.quantity else 0 end) d_30,
+sum(case when to_char(t2.txn_dt,'dd') ='31' then t2.quantity else 0 end) d_31,
+sum(case when to_char(t2.txn_dt,'mm-yyyy') = :targetMonth then t2.quantity else 0 end) mon_total,
+rwt.target,
+case when to_char(t2.txn_dt,'mm-yyyy') = :targetMonth then count(DISTINCT t2.order_NO) else 0 end memo_total,
+(case when to_char(t2.txn_dt,'mm-yyyy') = :targetMonth then count(DISTINCT t2.order_NO) else 0 end)* :totalWorkingDay / :passedWorkingDay m_projection,
+sum(case when to_char(t2.txn_dt,'mm-yyyy') = :targetMonth then t2.quantity else 0 end)* :totalWorkingDay / :passedWorkingDay projection
+from appmgi.v_product_teritory p
+        JOIN (select  ct.teritory_id route_id,
+                ct.consumer_id,
+                im.txn_dt,
+                ii.QUANTITY,
+                ii.TOTAL_AMOUNT,
+                ii.PRODUCT_ID,
+                im.INV_TYPE,
+                im.ORDER_NO,
+                im.SALES_REP_ID
+        from    appmgi.consumer_teritory ct
+        JOIN    appmgi.invoice_main im on ct.consumer_id=im.consumer_id
+        JOIN    appmgi.invoice_items ii on im.inv_no=ii.inv_no
+        JOIN    appmgi.product p on ii.product_id=p.product_id
+        where   im.INV_TYPE = 'I'
+        and     ii.quantity > 0
+        and     p.product_cat_id=:productCategoryId
+        and     p.PRODUCT_NAME like :productName || '%'
+	and     p.product_short_name like :brandName || '%'
+	) t2 
+        ON p.route_id=t2.route_id AND t2.PRODUCT_ID = p.PRODUCT_ID
+JOIN appmgi.V_TERITORY_ALL vta ON vta.ROUTE_ID = t2.ROUTE_ID
+and vta.NATIONAL_ID = ANY(:nationalId)
+and vta.DIVISION_ID = ANY(:divisionId)
+and vta.AREA_ID = ANY(:areaId)
+and vta.TERITORY_ID = ANY(:territoryId)
+LEFT JOIN route_wise_target rwt ON vta.route_id = rwt.route_id
+group by vta.national_ID,vta.national_name,vta.division_id, vta.division_name,vta.area_id,vta.area_name,vta.teritory_id,vta.teritory_name,
+vta.route_id,vta.route_name,t2.txn_dt,target,t2.consumer_id)
+GROUP BY national_ID,national_name,division_id,division_name,area_id,area_name,teritory_id,teritory_name,route_id,route_name
+order by national_ID, division_id, area_id,teritory_id, route_id

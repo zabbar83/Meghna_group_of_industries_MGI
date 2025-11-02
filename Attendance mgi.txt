@@ -1,0 +1,294 @@
+SELECT
+                    vta.national_id nationalId,
+                    vta.national_name nationalName,
+                    vta.division_id divisionId,
+                    vta.division_name divisionName,
+                    vta.area_id areaId,
+                    vta.area_name areaName,
+                    vta.teritory_id teritoryId,
+                    vta.teritory_name teritoryName,
+                    sr.sales_rep_id soId,
+                    ei.emp_id empId,
+                    ei.emp_office_id officeId,
+                    ei.emp_name soName,
+                    ei.doj,
+                    d.short_name department,
+                    dg.short_name designation,
+                    ei.status,
+                    ap.point_name attendancePointName,
+                    MAX(CASE
+                        WHEN dl.day_number = 1 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 1 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 1 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 1 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d01,
+                    MAX(CASE
+                        WHEN dl.day_number = 2 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 2 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 2 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 2 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d02,
+                    MAX(CASE
+                        WHEN dl.day_number = 3 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 3 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 3 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 3 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d03,
+                    MAX(CASE
+                        WHEN dl.day_number = 4 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 4 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 4 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 4 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d04,
+                    MAX(CASE
+                        WHEN dl.day_number = 5 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 5 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 5 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 5 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d05,
+                    MAX(CASE
+                        WHEN dl.day_number = 6 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 6 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 6 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 6 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d06,
+                    MAX(CASE
+                        WHEN dl.day_number = 7 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 7 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 7 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 7 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d07,
+                    MAX(CASE
+                        WHEN dl.day_number = 8 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 8 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 8 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 8 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d08,
+                    MAX(CASE
+                        WHEN dl.day_number = 9 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 9 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 9 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 9 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d09,
+                    MAX(CASE
+                        WHEN dl.day_number = 10 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 10 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 10 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 10 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d10,
+                    MAX(CASE
+                        WHEN dl.day_number = 11 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 11 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 11 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 11 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d11,
+                    MAX(CASE
+                        WHEN dl.day_number = 12 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 12 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 12 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 12 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d12,
+                    MAX(CASE
+                        WHEN dl.day_number = 13 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 13 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 13 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 13 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d13,
+                    MAX(CASE
+                        WHEN dl.day_number = 14 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 14 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 14 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 14 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d14,
+                    MAX(CASE
+                        WHEN dl.day_number = 15 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 15 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 15 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 15 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d15,
+                    MAX(CASE
+                        WHEN dl.day_number = 16 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 16 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 16 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 16 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d16,
+                    MAX(CASE
+                        WHEN dl.day_number = 17 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 17 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 17 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 17 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d17,
+                    MAX(CASE
+                        WHEN dl.day_number = 18 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 18 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 18 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 18 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d18,
+                    MAX(CASE
+                        WHEN dl.day_number = 19 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 19 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 19 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 19 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d19,
+                    MAX(CASE
+                        WHEN dl.day_number = 20 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 20 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 20 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 20 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d20,
+                    MAX(CASE
+                        WHEN dl.day_number = 21 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 21 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 21 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 21 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d21,
+                    MAX(CASE
+                        WHEN dl.day_number = 22 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 22 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 22 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 22 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d22,
+                    MAX(CASE
+                        WHEN dl.day_number = 23 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 23 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 23 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 23 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d23,
+                    MAX(CASE
+                        WHEN dl.day_number = 24 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 24 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 24 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 24 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d24,
+                    MAX(CASE
+                        WHEN dl.day_number = 25 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 25 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 25 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 25 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d25,
+                    MAX(CASE
+                        WHEN dl.day_number = 26 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 26 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 26 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 26 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d26,
+                    MAX(CASE
+                        WHEN dl.day_number = 27 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 27 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 27 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 27 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d27,
+                    MAX(CASE
+                        WHEN dl.day_number = 28 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 28 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 28 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 28 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d28,
+                    MAX(CASE
+                        WHEN dl.day_number = 29 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 29 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 29 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 29 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d29,
+                    MAX(CASE
+                        WHEN dl.day_number = 30 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 30 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 30 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 30 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d30,
+                    MAX(CASE
+                        WHEN dl.day_number = 31 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NULL THEN 'Off Day'
+                        WHEN dl.day_number = 31 AND dl.is_working_day = 1 AND dl.day_name = 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 31 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NOT NULL THEN TO_CHAR(a.add_date_time, 'HH:MI:SS AM')
+                        WHEN dl.day_number = 31 AND dl.is_working_day = 1 AND dl.day_name != 'FRIDAY' AND a.target_date IS NULL THEN 'Absent'
+                        ELSE NULL
+                    END) d31
+            FROM    sales_rep sr
+            JOIN    sales_rep_emp sre
+                    ON sr.id = sre.sales_rep_id
+            JOIN    emp_info ei
+                    on sre.emp_info_emp_id = ei.emp_id
+            JOIN    emp_department ed
+                    ON ei.emp_id = ed.emp_id
+            JOIN    department d
+                    ON ed.dept_id = d.id
+            JOIN    emp_designation edg
+                    ON ei.emp_id = edg.emp_id
+            JOIN    designation dg
+                    ON edg.designation_id = dg.id
+            JOIN    employee_territory et
+                    ON ei.emp_id = et.employee_id
+            JOIN    (
+                    SELECT
+                            DISTINCT
+                            national_id,
+                            national_name,
+                            division_id,
+                            division_name,
+                            area_id,
+                            area_name,
+                            teritory_id,
+                            teritory_name
+                    FROM    v_teritory_all
+                    ) vta
+                    ON et.territory_id = vta.teritory_id
+                    AND vta.teritory_id = :territoryId
+            JOIN    user_attendance_point uap
+                    ON sr.id = uap.sales_rep_id
+            JOIN    attendance_point ap
+                    ON uap.attendance_point_id = ap.id
+            CROSS   JOIN
+                    (
+                    SELECT
+                            LEVEL day_number,
+                            TO_DATE(TRUNC(TO_DATE(:fromDate, 'DD-MM-YYYY'), 'MM') + LEVEL - 1, 'DD-MON-YY') AS attendance_date,
+                            TRIM(TO_CHAR(TO_DATE(TRUNC(TO_DATE(:fromDate, 'DD-MM-YYYY'), 'MM') + LEVEL - 1, 'DD-MON-YY'), 'DAY')) day_name,
+                            TO_DATE(SYSDATE, 'DD-MON-YY') current_date,
+                            CASE WHEN TO_DATE(TRUNC(TO_DATE(:fromDate, 'DD-MM-YYYY'), 'MM') + LEVEL - 1, 'DD-MON-YY') <= TO_DATE(SYSDATE, 'DD-MON-YY') THEN 1 ELSE 0 END is_working_day
+                    FROM    dual
+                    CONNECT BY LEVEL <= LAST_DAY(TO_DATE(:fromDate, 'DD-MM-YYYY')) - TRUNC(TO_DATE(:fromDate, 'DD-MM-YYYY'), 'MM') + 1
+                    ) dl
+            LEFT    JOIN
+                    (
+                    SELECT
+                            *
+                    FROM    attendance
+                    WHERE   target_date BETWEEN TRUNC(TO_DATE(:fromDate, 'DD-MM-YYYY'), 'MM') AND LAST_DAY(TO_DATE(:fromDate, 'DD-MM-YYYY'))
+                    ) a
+                    ON sr.id = a.sales_rep_id
+                    AND dl.attendance_date = a.target_date
+            GROUP   BY vta.national_id, vta.national_name, vta.division_id, vta.division_name, vta.area_id, vta.area_name,
+                    vta.teritory_id, vta.teritory_name, sr.sales_rep_id, ei.emp_id, ei.emp_office_id, ei.emp_name, ei.doj,
+                    d.short_name, dg.short_name, ei.status, ap.point_name
+            ORDER   BY vta.national_id, vta.national_name, vta.division_id, vta.division_name, vta.area_id,
+                    vta.area_name, vta.teritory_id, vta.teritory_name, sr.sales_rep_id

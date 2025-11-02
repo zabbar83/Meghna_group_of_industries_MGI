@@ -1,0 +1,315 @@
+select
+    AO.NATIONAL_ID nationalId,
+    AO.NATIONAL_NAME nationalName,
+    AO.division_id divisionId,
+    AO.division_name divisionName,
+    AO.area_id areaId,
+    AO.area_name areaName,
+    AO.teritory_id teritoryId,
+    AO.teritory_name teritoryName,   
+    AO.route_id routeId,
+    AO.route_name routeName,
+    ao.totalOutlet,
+     nvl(ao.totalOutlet, 0) ss1_01,
+     nvl(vs.v1s1, 0) s1_1, nvl(vs.v1s2, 0) s2_1, nvl(vs.v1s3, 0) s3_1, nvl(vs.v1s4, 0) s4_1, nvl((ao.totalOutlet - vs.v1s5), 0) s5_1,
+                nvl(ao.totalOutlet, 0) ss1_02,
+                nvl(vs.v2s1, 0) s1_2, nvl(vs.v2s2, 0) s2_2, nvl(vs.v2s3, 0) s3_2, nvl(vs.v2s4, 0) s4_2, nvl((ao.totalOutlet - vs.v2s5), 0) s5_2,
+                nvl(ao.totalOutlet, 0) ss1_03,
+                nvl(vs.v3s1, 0) s1_3, nvl(vs.v3s2, 0) s2_3, nvl(vs.v3s3, 0) s3_3, nvl(vs.v3s4, 0) s4_3, nvl((ao.totalOutlet - vs.v3s5), 0) s5_3,
+                nvl(ao.totalOutlet, 0) ss1_04,
+                nvl(vs.v4s1, 0) s1_4, nvl(vs.v4s2, 0) s2_4, nvl(vs.v4s3, 0) s3_4, nvl(vs.v4s4, 0) s4_4, nvl((ao.totalOutlet - vs.v4s5), 0) s5_4,
+                nvl(ao.totalOutlet, 0) ss1_05,
+                nvl(vs.v5s1, 0) s1_5, nvl(vs.v5s2, 0) s2_5, nvl(vs.v5s3, 0) s3_5, nvl(vs.v5s4, 0) s4_5, nvl((ao.totalOutlet - vs.v5s5), 0) s5_5,
+                nvl(ao.totalOutlet, 0) ss1_06,
+                nvl(vs.v6s1, 0) s1_6, nvl(vs.v6s2, 0) s2_6, nvl(vs.v6s3, 0) s3_6, nvl(vs.v6s4, 0) s4_6, nvl((ao.totalOutlet - vs.v6s5), 0) s5_6,
+                nvl(ao.totalOutlet, 0) ss1_07,
+                nvl(vs.v7s1, 0) s1_7, nvl(vs.v7s2, 0) s2_7, nvl(vs.v7s3, 0) s3_7, nvl(vs.v7s4, 0) s4_7, nvl((ao.totalOutlet - vs.v7s5), 0) s5_7,
+                nvl(ao.totalOutlet, 0) ss1_08,
+                nvl(vs.v8s1, 0) s1_8, nvl(vs.v8s2, 0) s2_8, nvl(vs.v8s3, 0) s3_8, nvl(vs.v8s4, 0) s4_8, nvl((ao.totalOutlet - vs.v8s5), 0) s5_8,
+                nvl(ao.totalOutlet, 0) ss1_09,
+                nvl(vs.v9s1, 0) s1_9, nvl(vs.v9s2, 0) s2_9, nvl(vs.v9s3, 0) s3_9, nvl(vs.v9s4, 0) s4_9, nvl((ao.totalOutlet - vs.v9s5), 0) s5_9,
+                nvl(ao.totalOutlet, 0) ss1_10,
+                nvl(vs.v10s1, 0) s1_10, nvl(vs.v10s2, 0) s2_10, nvl(vs.v10s3, 0) s3_10, nvl(vs.v10s4, 0) s4_10, nvl((ao.totalOutlet - vs.v10s5), 0) s5_10,
+                nvl(ao.totalOutlet, 0) ss1_11,
+                nvl(vs.v11s1, 0) s1_11, nvl(vs.v11s2, 0) s2_11, nvl(vs.v11s3, 0) s3_11, nvl(vs.v11s4, 0) s4_11, nvl((ao.totalOutlet - vs.v11s5), 0) s5_11,
+                nvl(ao.totalOutlet, 0) ss1_12,
+                nvl(vs.v12s1, 0) s1_12, nvl(vs.v12s2, 0) s2_12, nvl(vs.v12s3, 0) s3_12, nvl(vs.v12s4, 0) s4_12, nvl((ao.totalOutlet - vs.v12s5), 0) s5_12,
+                nvl(ao.totalOutlet, 0) ss1_13,
+                nvl(vs.v13s1, 0) s1_13, nvl(vs.v13s2, 0) s2_13, nvl(vs.v13s3, 0) s3_13, nvl(vs.v13s4, 0) s4_13, nvl((ao.totalOutlet - vs.v13s5), 0) s5_13,
+                nvl(ao.totalOutlet, 0) ss1_14,
+                nvl(vs.v14s1, 0) s1_14, nvl(vs.v14s2, 0) s2_14, nvl(vs.v14s3, 0) s3_14, nvl(vs.v14s4, 0) s4_14, nvl((ao.totalOutlet - vs.v14s5), 0) s5_14,
+                nvl(ao.totalOutlet, 0) ss1_15,
+                nvl(vs.v15s1, 0) s1_15, nvl(vs.v15s2, 0) s2_15, nvl(vs.v15s3, 0) s3_15, nvl(vs.v15s4, 0) s4_15, nvl((ao.totalOutlet - vs.v15s5), 0) s5_15,
+                nvl(ao.totalOutlet, 0) ss1_16,
+                nvl(vs.v16s1, 0) s1_16, nvl(vs.v16s2, 0) s2_16, nvl(vs.v16s3, 0) s3_16, nvl(vs.v16s4, 0) s4_16, nvl((ao.totalOutlet - vs.v16s5), 0) s5_16,
+                nvl(ao.totalOutlet, 0) ss1_17,
+                nvl(vs.v17s1, 0) s1_17, nvl(vs.v17s2, 0) s2_17, nvl(vs.v17s3, 0) s3_17, nvl(vs.v17s4, 0) s4_17, nvl((ao.totalOutlet - vs.v17s5), 0) s5_17,
+                nvl(ao.totalOutlet, 0) ss1_18,
+                nvl(vs.v18s1, 0) s1_18, nvl(vs.v18s2, 0) s2_18, nvl(vs.v18s3, 0) s3_18, nvl(vs.v18s4, 0) s4_18, nvl((ao.totalOutlet - vs.v18s5), 0) s5_18,
+                nvl(ao.totalOutlet, 0) ss1_19,
+                nvl(vs.v19s1, 0) s1_19, nvl(vs.v19s2, 0) s2_19, nvl(vs.v19s3, 0) s3_19, nvl(vs.v19s4, 0) s4_19, nvl((ao.totalOutlet - vs.v19s5), 0) s5_19,
+                nvl(ao.totalOutlet, 0) ss1_20,
+                nvl(vs.v20s1, 0) s1_20, nvl(vs.v20s2, 0) s2_20, nvl(vs.v20s3, 0) s3_20, nvl(vs.v20s4, 0) s4_20, nvl((ao.totalOutlet - vs.v20s5), 0) s5_20,
+                nvl(ao.totalOutlet, 0) ss1_21,
+                nvl(vs.v21s1, 0) s1_21, nvl(vs.v21s2, 0) s2_21, nvl(vs.v21s3, 0) s3_21, nvl(vs.v21s4, 0) s4_21, nvl((ao.totalOutlet - vs.v21s5), 0) s5_21,
+                nvl(ao.totalOutlet, 0) ss1_22,
+                nvl(vs.v22s1, 0) s1_22, nvl(vs.v22s2, 0) s2_22, nvl(vs.v22s3, 0) s3_22, nvl(vs.v22s4, 0) s4_22, nvl((ao.totalOutlet - vs.v22s5), 0) s5_22,
+                nvl(ao.totalOutlet, 0) ss1_23,
+                nvl(vs.v23s1, 0) s1_23, nvl(vs.v23s2, 0) s2_23, nvl(vs.v23s3, 0) s3_23, nvl(vs.v23s4, 0) s4_23, nvl((ao.totalOutlet - vs.v23s5), 0) s5_23,
+                nvl(ao.totalOutlet, 0) ss1_24,
+                nvl(vs.v24s1, 0) s1_24, nvl(vs.v24s2, 0) s2_24, nvl(vs.v24s3, 0) s3_24, nvl(vs.v24s4, 0) s4_24, nvl((ao.totalOutlet - vs.v24s5), 0) s5_24,
+                nvl(ao.totalOutlet, 0) ss1_25,
+                nvl(vs.v25s1, 0) s1_25, nvl(vs.v25s2, 0) s2_25, nvl(vs.v25s3, 0) s3_25, nvl(vs.v25s4, 0) s4_25, nvl((ao.totalOutlet - vs.v25s5), 0) s5_25,
+                nvl(ao.totalOutlet, 0) ss1_26,
+                nvl(vs.v26s1, 0) s1_26, nvl(vs.v26s2, 0) s2_26, nvl(vs.v26s3, 0) s3_26, nvl(vs.v26s4, 0) s4_26, nvl((ao.totalOutlet - vs.v26s5), 0) s5_26,
+                nvl(ao.totalOutlet, 0) ss1_27,
+                nvl(vs.v27s1, 0) s1_27, nvl(vs.v27s2, 0) s2_27, nvl(vs.v27s3, 0) s3_27, nvl(vs.v27s4, 0) s4_27, nvl((ao.totalOutlet - vs.v27s5), 0) s5_27,
+                nvl(ao.totalOutlet, 0) ss1_28,
+                nvl(vs.v28s1, 0) s1_28, nvl(vs.v28s2, 0) s2_28, nvl(vs.v28s3, 0) s3_28, nvl(vs.v28s4, 0) s4_28, nvl((ao.totalOutlet - vs.v28s5), 0) s5_28,
+                nvl(ao.totalOutlet, 0) ss1_29,
+                nvl(vs.v29s1, 0) s1_29, nvl(vs.v29s2, 0) s2_29, nvl(vs.v29s3, 0) s3_29, nvl(vs.v29s4, 0) s4_29, nvl((ao.totalOutlet - vs.v29s5), 0) s5_29,
+                nvl(ao.totalOutlet, 0) ss1_30,
+                nvl(vs.v30s1, 0) s1_30, nvl(vs.v30s2, 0) s2_30, nvl(vs.v30s3, 0) s3_30, nvl(vs.v30s4, 0) s4_30, nvl((ao.totalOutlet - vs.v30s5), 0) s5_30,
+                nvl(ao.totalOutlet, 0) ss1_31,
+                nvl(vs.v31s1, 0) s1_31, nvl(vs.v31s2, 0) s2_31, nvl(vs.v31s3, 0) s3_31, nvl(vs.v31s4, 0) s4_31, nvl((ao.totalOutlet - vs.v31s5), 0) s5_31
+
+from
+
+(
+SELECT
+    vta.NATIONAL_ID,
+    vta.NATIONAL_NAME,
+    vta.division_id,
+    vta.division_name,
+    vta.teritory_id,
+    vta.teritory_name,
+    vta.AREA_ID,
+    vta.AREA_NAME,
+    vta.route_id,
+    vta.route_name,
+    count(c.id) totalOutlet
+FROM
+    appmgi.v_teritory_all vta
+JOIN
+    appmgi.consumer_teritory ct ON vta.route_id = ct.teritory_id
+and vta.area_id =$P{areaId}
+and $P{teritoryId} is null or vta.teritory_id = $P{teritoryId}
+and $P{routeId} is null or vta.route_id = $P{routeId}
+JOIN
+    appmgi.consumer c ON ct.consumer_id = c.id
+    AND c.status = 1
+    AND c.consumer_status = 'ACCEPT'
+GROUP BY
+    vta.NATIONAL_ID,
+    vta.NATIONAL_NAME,
+    vta.division_id, 
+    vta.division_name, 
+    vta.teritory_id, 
+    vta.teritory_name, 
+    vta.AREA_ID,
+    vta.AREA_NAME,
+    vta.route_id,
+    vta.route_name
+ORDER BY
+    vta.route_id
+) ao
+ left join
+(
+select vta.route_id,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '01' THEN 1 END) v1s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '01' THEN 1 END) v1s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '01' THEN 1 END) v1s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '01' THEN 1 END) v1s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '01' THEN 1 END) v1s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '02' THEN 1 END) v2s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '02' THEN 1 END) v2s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '02' THEN 1 END) v2s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '02' THEN 1 END) v2s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '02' THEN 1 END) v2s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '03' THEN 1 END) v3s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '03' THEN 1 END) v3s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '03' THEN 1 END) v3s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '03' THEN 1 END) v3s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '03' THEN 1 END) v3s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '04' THEN 1 END) v4s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '04' THEN 1 END) v4s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '04' THEN 1 END) v4s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '04' THEN 1 END) v4s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '04' THEN 1 END) v4s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '05' THEN 1 END) v5s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '05' THEN 1 END) v5s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '05' THEN 1 END) v5s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '05' THEN 1 END) v5s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '05' THEN 1 END) v5s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '06' THEN 1 END) v6s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '06' THEN 1 END) v6s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '06' THEN 1 END) v6s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '06' THEN 1 END) v6s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '06' THEN 1 END) v6s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '07' THEN 1 END) v7s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '07' THEN 1 END) v7s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '07' THEN 1 END) v7s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '07' THEN 1 END) v7s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '07' THEN 1 END) v7s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '08' THEN 1 END) v8s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '08' THEN 1 END) v8s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '08' THEN 1 END) v8s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '08' THEN 1 END) v8s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '08' THEN 1 END) v8s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '09' THEN 1 END) v9s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '09' THEN 1 END) v9s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '09' THEN 1 END) v9s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '09' THEN 1 END) v9s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '09' THEN 1 END) v9s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '10' THEN 1 END) v10s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '10' THEN 1 END) v10s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '10' THEN 1 END) v10s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '10' THEN 1 END) v10s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '10' THEN 1 END) v10s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '11' THEN 1 END) v11s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '11' THEN 1 END) v11s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '11' THEN 1 END) v11s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '11' THEN 1 END) v11s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '11' THEN 1 END) v11s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '12' THEN 1 END) v12s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '12' THEN 1 END) v12s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '12' THEN 1 END) v12s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '12' THEN 1 END) v12s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '12' THEN 1 END) v12s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '13' THEN 1 END) v13s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '13' THEN 1 END) v13s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '13' THEN 1 END) v13s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '13' THEN 1 END) v13s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '13' THEN 1 END) v13s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '14' THEN 1 END) v14s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '14' THEN 1 END) v14s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '14' THEN 1 END) v14s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '14' THEN 1 END) v14s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '14' THEN 1 END) v14s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '15' THEN 1 END) v15s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '15' THEN 1 END) v15s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '15' THEN 1 END) v15s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '15' THEN 1 END) v15s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '15' THEN 1 END) v15s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '16' THEN 1 END) v16s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '16' THEN 1 END) v16s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '16' THEN 1 END) v16s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '16' THEN 1 END) v16s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '16' THEN 1 END) v16s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '17' THEN 1 END) v17s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '17' THEN 1 END) v17s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '17' THEN 1 END) v17s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '17' THEN 1 END) v17s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '17' THEN 1 END) v17s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '18' THEN 1 END) v18s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '18' THEN 1 END) v18s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '18' THEN 1 END) v18s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '18' THEN 1 END) v18s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '18' THEN 1 END) v18s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '19' THEN 1 END) v19s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '19' THEN 1 END) v19s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '19' THEN 1 END) v19s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '19' THEN 1 END) v19s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '19' THEN 1 END) v19s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '20' THEN 1 END) v20s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '20' THEN 1 END) v20s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '20' THEN 1 END) v20s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '20' THEN 1 END) v20s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '20' THEN 1 END) v20s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '21' THEN 1 END) v21s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '21' THEN 1 END) v21s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '21' THEN 1 END) v21s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '21' THEN 1 END) v21s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '21' THEN 1 END) v21s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '22' THEN 1 END) v22s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '22' THEN 1 END) v22s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '22' THEN 1 END) v22s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '22' THEN 1 END) v22s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '22' THEN 1 END) v22s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '23' THEN 1 END) v23s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '23' THEN 1 END) v23s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '23' THEN 1 END) v23s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '23' THEN 1 END) v23s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '23' THEN 1 END) v23s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '24' THEN 1 END) v24s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '24' THEN 1 END) v24s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '24' THEN 1 END) v24s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '24' THEN 1 END) v24s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '24' THEN 1 END) v24s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '25' THEN 1 END) v25s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '25' THEN 1 END) v25s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '25' THEN 1 END) v25s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '25' THEN 1 END) v25s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '25' THEN 1 END) v25s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '26' THEN 1 END) v26s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '26' THEN 1 END) v26s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '26' THEN 1 END) v26s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '26' THEN 1 END) v26s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '26' THEN 1 END) v26s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '27' THEN 1 END) v27s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '27' THEN 1 END) v27s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '27' THEN 1 END) v27s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '27' THEN 1 END) v27s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '27' THEN 1 END) v27s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '28' THEN 1 END) v28s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '28' THEN 1 END) v28s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '28' THEN 1 END) v28s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '28' THEN 1 END) v28s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '28' THEN 1 END) v28s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '29' THEN 1 END) v29s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '29' THEN 1 END) v29s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '29' THEN 1 END) v29s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '29' THEN 1 END) v29s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '29' THEN 1 END) v29s5,
+
+COUNT(CASE WHEN v.status = 1 AND TO_CHAR(v.entry_time, 'DD') = '30' THEN 1 END) v30s1,
+COUNT(CASE WHEN v.status = 2 AND TO_CHAR(v.entry_time, 'DD') = '30' THEN 1 END) v30s2,
+COUNT(CASE WHEN v.status = 3 AND TO_CHAR(v.entry_time, 'DD') = '30' THEN 1 END) v30s3,
+COUNT(CASE WHEN v.status = 4 AND TO_CHAR(v.entry_time, 'DD') = '30' THEN 1 END) v30s4,
+COUNT(CASE WHEN v.status in (1,2,3,4) AND TO_CHAR(v.entry_time, 'DD') = '30' THEN 1 END) v30s5,
+
+COUNT(CASE WHEN TO_CHAR(v.entry_time, 'MM') IN ('01', '03', '05', '07', '08', '10', '12')  AND TO_CHAR(v.entry_time, 'DD') = '31'  THEN CASE WHEN v.status = 1 THEN 1 ELSE NULL END ELSE NULL END) v31s1,
+COUNT(CASE WHEN TO_CHAR(v.entry_time, 'MM') IN ('01', '03', '05', '07', '08', '10', '12') AND TO_CHAR(v.entry_time, 'DD') = '31'  THEN CASE WHEN v.status = 2 THEN 1 ELSE NULL END ELSE NULL END) v31s2,
+COUNT(CASE WHEN TO_CHAR(v.entry_time, 'MM') IN ('01', '03', '05', '07', '08', '10', '12')  AND TO_CHAR(v.entry_time, 'DD') = '31'  THEN CASE WHEN v.status = 3 THEN 1 ELSE NULL END ELSE NULL END) v31s3,
+COUNT(CASE WHEN TO_CHAR(v.entry_time, 'MM') IN ('01', '03', '05', '07', '08', '10', '12')  AND TO_CHAR(v.entry_time, 'DD') = '31'  THEN CASE WHEN v.status = 4 THEN 1 ELSE NULL END ELSE NULL END) v31s4,
+COUNT(CASE WHEN TO_CHAR(v.entry_time, 'MM') IN ('01', '03', '05', '07', '08', '10', '12') AND TO_CHAR(v.entry_time, 'DD') = '31'  THEN CASE WHEN v.status in (1,2,3,4) THEN 1 ELSE NULL END ELSE NULL END) v31s5
+
+from appmgi.v_teritory_all vta
+join appmgi.consumer_teritory ct on ct.teritory_id=vta.route_id
+join appmgi.V_STORE_VISIT_AND_BUFFER_sts v on ct.consumer_id=v.consumer_id
+where to_char(entry_time,'mm-yyyy') =$P{targetMonth}
+and vta.area_id =$P{areaId}
+and $P{teritoryId} is null or vta.teritory_id = $P{teritoryId}
+and $P{routeId} is null or vta.route_id = $P{routeId}
+
+group by vta.route_id) vs on ao.route_id=vs.route_id
+order by  AO.NATIONAL_ID , AO.division_id ,AO.teritory_id, AO.area_id, AO.area_name, AO.route_id, AO.route_name
